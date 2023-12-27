@@ -18,6 +18,7 @@
                 <th>No PO</th>
                 <th>Created At</th>
                 <th>Updated At</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,15 @@
                     <td>{{ $sopr->no_po }}</td>
                     <td>{{ $sopr->created_at }}</td>
                     <td>{{ $sopr->updated_at }}</td>
+                    <td>
+                        <a href="{{ route('sopr.edit', $productDetermination->id) }}">Edit</a>
+                        |
+                        <form method="POST" action="{{ route('sopr.destroy', $productDetermination->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

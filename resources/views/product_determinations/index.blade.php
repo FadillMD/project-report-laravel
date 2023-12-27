@@ -18,6 +18,7 @@
                 <th>Cable Marking</th>
                 <th>Created At</th>
                 <th>Updated At</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,13 +29,22 @@
                     <td>{{ $productDetermination->cable_marking }}</td>
                     <td>{{ $productDetermination->created_at }}</td>
                     <td>{{ $productDetermination->updated_at }}</td>
+                    <td>
+                        <a href="{{ route('product_determinations.edit', $productDetermination->id) }}">Edit</a>
+                        |
+                        <form method="POST" action="{{ route('product_determinations.destroy', $productDetermination->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
     <!-- Link to create new Product Determination -->
-    <a href="{{ route('product-determinations.create') }}">Create New Product Determination</a>
+    <a href="{{ route('product_determinations.create') }}">Create New Product Determination</a>
 
 </body>
 </html>

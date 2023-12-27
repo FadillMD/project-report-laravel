@@ -20,6 +20,7 @@
                 <th>Notes</th>
                 <th>Created At</th>
                 <th>Updated At</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,15 @@
                     <td>{{ $soprOrderProduct->notes }}</td>
                     <td>{{ $soprOrderProduct->created_at }}</td>
                     <td>{{ $soprOrderProduct->updated_at }}</td>
+                    <td>
+                        <a href="{{ route('sopr_order_products.edit', $productDetermination->id) }}">Edit</a>
+                        |
+                        <form method="POST" action="{{ route('sopr_order_products.destroy', $productDetermination->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

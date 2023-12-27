@@ -9,8 +9,11 @@ class Sopr extends Model
 {
     protected $fillable = ['no_sopr', 'customer', 'no_po'];
     
-    public function soprOrderProducts()
+    public function productDeterminations()
     {
-        return $this->hasMany(SoprOrderProduct::class, 'no_sopr', 'no_sopr');
+        return $this->belongsToMany(ProductDetermination::class, 'sopr_product_determination', 'no_sopr', 'no_pd')
+            ->withPivot(['code_number', 'qty_order', 'delivery_req', 'notes'])
+            ->withTimestamps();
     }
+    
 }

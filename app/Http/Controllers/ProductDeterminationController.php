@@ -52,7 +52,11 @@ class ProductDeterminationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Retrieve the Product Determination with associated SOPRs
+        $productDetermination = ProductDetermination::with('soprs')->findOrFail($id);
+
+        return view('product_determinations.show', compact('productDetermination'));
+
     }
 
     /**
@@ -60,7 +64,11 @@ class ProductDeterminationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Retrieve the Product Determination for editing
+        $productDetermination = ProductDetermination::findOrFail($id);
+
+        return view('product_determinations.edit', compact('productDetermination'));
+
     }
 
     /**
@@ -68,7 +76,20 @@ class ProductDeterminationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'no_pd' => 'required|unique:product_determinations,no_pd,' . $id,
+            'type' => 'required|string|max:255',
+            'cable_marking' => 'required|string|max:255',
+        ]);
+
+        // Update the Product Determination record
+        $productDetermination = ProductDetermination::findOrFail($id);
+        $productDetermination->update($validatedData);
+
+        // Redirect to the Product Determinations index page with a success message
+        return redirect()->route('product_determinations.index')->with('success', 'Product Determination updated successfully!');
+
     }
 
     /**
@@ -76,6 +97,12 @@ class ProductDeterminationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Delete the Product Determination record
+        $productDetermination = ProductDetermination::findOrFail($id);
+        $productDetermination->delete();
+
+        // Redirect to the Product Determinations index page with a success message
+        return redirect()->route('product_determinations.index')->with('success', 'Product Determination deleted successfully!');
+
     }
 }

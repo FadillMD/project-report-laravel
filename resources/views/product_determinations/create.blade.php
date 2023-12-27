@@ -10,7 +10,7 @@
     <h1>Create Product Determination</h1>
 
     <!-- Product Determination Input Form -->
-    <form method="POST" action="{{ route('product-determinations.store') }}">
+    <form method="POST" action="{{ route('product_determinations.store') }}">
         @csrf
         <label for="no_pd">No PD:</label>
         <input type="text" name="no_pd" required><br>

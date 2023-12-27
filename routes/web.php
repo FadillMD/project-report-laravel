@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SoprController;
 use App\Http\Controllers\ProductDeterminationController;
 use App\Http\Controllers\SoprOrderProductController;
+use App\Http\Controllers\SoprProductDeterminationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,7 @@ Route::get('/', function () {
 });
 
 Route::resource('sopr', SoprController::class);
-Route::resource('product-determinations', ProductDeterminationController::class);
+Route::resource('product_determinations', ProductDeterminationController::class);
 Route::resource('sopr_order_products', SoprOrderProductController::class);
+Route::resource('sopr_product_determination', SoprProductDeterminationController::class);
+Route::get('/get-type/{id}', 'SoprProductDeterminationController@getType');

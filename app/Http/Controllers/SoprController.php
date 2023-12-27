@@ -50,7 +50,10 @@ class SoprController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Retrieve the SOPR with associated Product Determinations
+        $sopr = Sopr::with('productDeterminations')->findOrFail($id);
+
+        return view('sopr.show', compact('sopr'));
     }
 
     /**
@@ -58,7 +61,10 @@ class SoprController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Retrieve the SOPR for editing
+        $sopr = Sopr::findOrFail($id);
+
+        return view('sopr.edit', compact('sopr'));
     }
 
     /**
@@ -66,7 +72,20 @@ class SoprController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         // Validate the incoming request data
+        $validatedData = $request->validate([
+            'no_sopr' => 'required|string|max:255',
+            'customer' => 'required|string|max:255',
+            'no_po' => 'required|string|max:255',
+        ]);
+
+        // Update the SOPR record
+        $sopr = Sopr::findOrFail($id);
+        $sopr->update($validatedData);
+
+        // Redirect to the SOPRs index page with a success message
+        return redirect()->route('sopr.index')->with('success', 'SOPR updated successfully!');
+
     }
 
     /**
@@ -74,6 +93,12 @@ class SoprController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Delete the SOPR record
+        $sopr = Sopr::findOrFail($id);
+        $sopr->delete();
+
+        // Redirect to the SOPRs index page with a success message
+        return redirect()->route('sopr.index')->with('success', 'SOPR deleted successfully!');
+
     }
 }
