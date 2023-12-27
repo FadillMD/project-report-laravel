@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SoprController;
+use App\Http\Controllers\ProductDeterminationController;
+use App\Http\Controllers\SoprOrderProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,5 @@ Route::get('/', function () {
 });
 
 Route::resource('sopr', SoprController::class);
+Route::resource('product-determinations', ProductDeterminationController::class);
+Route::resource('sopr_order_products', SoprOrderProductController::class);

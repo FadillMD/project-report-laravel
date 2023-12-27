@@ -24,7 +24,7 @@ class ProductDeterminationController extends Controller
      */
     public function create()
     {
-        //
+        return view('product_determinations.create');
     }
 
     /**
@@ -32,7 +32,19 @@ class ProductDeterminationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Validate the incoming request data
+         $validatedData = $request->validate([
+            'no_pd' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'cable_marking' => 'required|string|max:255',
+        ]);
+
+        // Create a new product determination record
+        ProductDetermination::create($validatedData);
+
+        // Redirect to the product determinations index page with a success message
+        return redirect()->route('product_determinations.index')->with('success', 'Product Determination created successfully!');
+
     }
 
     /**
