@@ -21,13 +21,19 @@
         </select><br>
 
         <!-- Select Product Determination -->
-        <label for="product_determination_id">Select Product Determination:</label>
-        <select name="product_determination_id" id="product_determination_id">
-            @foreach ($productDeterminations as $productDetermination)
-                <option value="{{ $productDetermination->id }}">{{ $productDetermination->no_pd }}</option>
-            @endforeach
-        </select><br>
+    <label for="product_determination_id">Select Product Determination:</label>
+    <select name="product_determination_id" id="product_determination_id">
+        @foreach ($productDeterminations as $productDetermination)
+            <option value="{{ $productDetermination->id }}" data-type="{{ $productDetermination->type }}">
+                {{ $productDetermination->no_pd }}
+            </option>
+        @endforeach
+    </select><br>
 
+        <!-- Add a new div to display the "type" based on the selected "no_pd" -->
+        <div id="productTypeContainer">
+            Type: <span id="productType"></span>
+        </div>
         <!-- Type (Automatically Filled) -->
         <label for="type">Type (Automatically Filled):</label>
         <input type="text" name="type" id="type" readonly><br>
@@ -48,14 +54,17 @@
         <button type="submit">Create SOPR Product Determination</button>
     </form>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Add an event listener to the product_determination_id dropdown
-        document.getElementById('product_determination_id').addEventListener('change', function () {
-            // Get the selected option
-            var selectedOption = this.options[this.selectedIndex];
-            
-            // Update the 'type' textbox with the 'type' attribute of the selected option
-            document.getElementById('type').value = selectedOption.getAttribute('data-type');
+        // Use jQuery to handle the change event of the product_determination_id dropdown
+        $(document).ready(function() {
+            $('#product_determination_id').on('change', function() {
+                // Get the selected option's data-type attribute
+                var productType = $(this).find('option:selected').data('type');
+    
+                // Update the content of the #productType element
+                $('#productType').text(productType);
+            });
         });
     </script>
 
