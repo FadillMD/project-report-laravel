@@ -24,5 +24,5 @@ Route::get('/', function () {
 Route::resource('sopr', SoprController::class);
 Route::resource('product_determinations', ProductDeterminationController::class);
 Route::resource('sopr_order_products', SoprOrderProductController::class);
-Route::resource('sopr_product_determination', SoprProductDeterminationController::class);
+Route::resource('sopr_product_determinations', SoprProductDeterminationController::class);
 Route::get('/get-type/{id}', 'SoprProductDeterminationController@getType');

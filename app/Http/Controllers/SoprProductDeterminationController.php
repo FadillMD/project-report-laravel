@@ -13,9 +13,9 @@ class SoprProductDeterminationController extends Controller
      */
     public function index()
     {
-        $soprProductDetermination = Sopr::with('productDeterminations')->get();
+        $soprProductDeterminations = Sopr::with('productDeterminations')->get();
 
-        return view('sopr_product_determination.index', compact('soprProductDetermination'));
+        return view('sopr_product_determinations.index', compact('soprProductDeterminations'));
 
     }
 
@@ -27,7 +27,7 @@ class SoprProductDeterminationController extends Controller
         $soprs = Sopr::all();
         $productDeterminations = ProductDetermination::all();
 
-        return view('sopr_product_determination.create', compact('soprs', 'productDeterminations'));
+        return view('sopr_product_determinations.create', compact('soprs', 'productDeterminations'));
 
     }
 
@@ -58,7 +58,7 @@ class SoprProductDeterminationController extends Controller
             ]
         );
 
-        return redirect()->route('sopr_product_determination.index')->with('success', 'SOPR Product Determination created successfully!');
+        return redirect()->route('sopr_product_determinations.index')->with('success', 'SOPR Product Determination created successfully!');
 
     }
 

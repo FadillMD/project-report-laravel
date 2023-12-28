@@ -11,7 +11,7 @@ class Sopr extends Model
     
     public function productDeterminations()
     {
-        return $this->belongsToMany(ProductDetermination::class, 'sopr_product_determination', 'no_sopr', 'no_pd')
+        return $this->belongsToMany(ProductDetermination::class, 'sopr_product_determinations', 'no_sopr', 'no_pd')
             ->withPivot(['code_number', 'qty_order', 'delivery_req', 'notes'])
             ->withTimestamps();
     }

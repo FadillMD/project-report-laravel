@@ -34,9 +34,9 @@
         <div id="productTypeContainer">
             Type: <span id="productType"></span>
         </div>
-        <!-- Type (Automatically Filled) -->
+        {{-- <!-- Type (Automatically Filled) -->
         <label for="type">Type (Automatically Filled):</label>
-        <input type="text" name="type" id="type" readonly><br>
+        <input type="text" name="type" id="type" readonly><br> --}}
 
         <!-- Other Fields -->
         <label for="code_number">Code Number:</label>

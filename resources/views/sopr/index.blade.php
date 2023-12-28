@@ -30,9 +30,9 @@
                     <td>{{ $sopr->created_at }}</td>
                     <td>{{ $sopr->updated_at }}</td>
                     <td>
-                        <a href="{{ route('sopr.edit', $productDetermination->id) }}">Edit</a>
+                        <a href="{{ route('sopr.edit', $sopr->id) }}">Edit</a>
                         |
-                        <form method="POST" action="{{ route('sopr.destroy', $productDetermination->id) }}">
+                        <form method="POST" action="{{ route('sopr.destroy', $sopr->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>

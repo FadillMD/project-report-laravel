@@ -21,9 +21,9 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->timestamps();
 
-            // Foreign keys
-            $table->foreign('no_sopr')->references('no_sopr')->on('soprs')->onDelete('cascade');
-            $table->foreign('no_pd')->references('no_pd')->on('product_determinations')->onDelete('cascade');
+            // // Foreign keys
+            // $table->foreign('no_sopr')->references('no_sopr')->on('soprs')->onDelete('cascade');
+            // $table->foreign('no_pd')->references('no_pd')->on('product_determinations')->onDelete('cascade');
         });
     }
 
